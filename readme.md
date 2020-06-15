@@ -1,4 +1,4 @@
-# patch-console
+# patch-console ![test](https://github.com/vadimdemedes/patch-console/workflows/test/badge.svg)
 
 > Patch console methods to intercept output
 
