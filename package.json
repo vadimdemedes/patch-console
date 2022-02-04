@@ -9,17 +9,17 @@
 		"email": "vdemedes@gmail.com",
 		"url": "https://github.com/vadimdemedes"
 	},
-	"main": "build",
-	"types": "build/index.d.ts",
+	"main": "dist",
+	"types": "dist/index.d.ts",
 	"engines": {
 		"node": ">=10"
 	},
 	"scripts": {
 		"prepare": "tsc",
-		"test": "prettier --check src && tsc && xo && ava"
+		"test": "prettier --check source && tsc && xo && ava"
 	},
 	"files": [
-		"build"
+		"dist"
 	],
 	"keywords": [
 		"stdout",
