@@ -18,7 +18,7 @@ const CONSOLE_METHODS = [
 	'timeEnd',
 	'timeLog',
 	'trace',
-	'warn'
+	'warn',
 ];
 
 let originalMethods: {[key: string]: any} = {};
