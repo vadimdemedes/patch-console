@@ -1,8 +1,6 @@
 {
-	"extends": "@sindresorhus/tsconfig",
+	"extends": "@sindresorhus/tsconfig/tsconfig.json",
 	"compilerOptions": {
-		"outDir": "dist",
-		"sourceMap": true
-	},
-	"include": ["source"]
+		"outDir": "dist"
+	}
 }
