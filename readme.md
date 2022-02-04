@@ -11,7 +11,7 @@ $ npm install patch-console
 ## Usage
 
 ```js
-const patchConsole = require('patch-console');
+import patchConsole from 'patch-console';
 
 const restore = patchConsole((stream, data) => {
 	// stream = 'stdout'

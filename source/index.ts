@@ -1,6 +1,6 @@
-import {PassThrough} from 'stream';
+import {PassThrough} from 'node:stream';
 
-const CONSOLE_METHODS = [
+const consoleMethods = [
 	'assert',
 	'count',
 	'countReset',
@@ -21,7 +21,7 @@ const CONSOLE_METHODS = [
 	'warn',
 ];
 
-let originalMethods: {[key: string]: any} = {};
+let originalMethods: Record<string, unknown> = {};
 
 type Callback = (stream: 'stdout' | 'stderr', data: string) => void;
 type Restore = () => void;
@@ -30,18 +30,25 @@ const patchConsole = (callback: Callback): Restore => {
 	const stdout = new PassThrough();
 	const stderr = new PassThrough();
 
-	(stdout as any).write = (data: string): void => callback('stdout', data);
-	(stderr as any).write = (data: string): void => callback('stderr', data);
+	(stdout as any).write = (data: string): void => {
+		callback('stdout', data);
+	};
+
+	(stderr as any).write = (data: string): void => {
+		callback('stderr', data);
+	};
 
 	const internalConsole = new console.Console(stdout, stderr);
 
-	for (const method of CONSOLE_METHODS) {
+	for (const method of consoleMethods) {
 		originalMethods[method] = (console as any)[method];
+
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		(console as any)[method] = (internalConsole as any)[method];
 	}
 
 	return () => {
-		for (const method of CONSOLE_METHODS) {
+		for (const method of consoleMethods) {
 			(console as any)[method] = originalMethods[method];
 		}
 
@@ -49,4 +56,4 @@ const patchConsole = (callback: Callback): Restore => {
 	};
 };
 
-export = patchConsole;
+export default patchConsole;

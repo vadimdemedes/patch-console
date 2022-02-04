@@ -1,10 +1,9 @@
-'use strict';
-const test = require('ava');
-const {spy} = require('sinon');
-const patch = require('.');
+import test from 'ava';
+import sinon from 'sinon';
+import patch from './dist/index.js';
 
 test('intercept console.log()', t => {
-	const write = spy();
+	const write = sinon.spy();
 	const restore = patch(write);
 
 	console.log('test');
@@ -15,7 +14,7 @@ test('intercept console.log()', t => {
 });
 
 test('intercept console.error()', t => {
-	const write = spy();
+	const write = sinon.spy();
 	const restore = patch(write);
 
 	console.error('test');
