@@ -1,6 +1,6 @@
 {
 	"name": "patch-console",
-	"version": "1.0.0",
+	"version": "2.0.0",
 	"description": "Patch console methods to intercept output",
 	"license": "MIT",
 	"repository": "vadimdemedes/patch-console",
