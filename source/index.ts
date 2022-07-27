@@ -38,7 +38,13 @@ const patchConsole = (callback: Callback): Restore => {
 		callback('stderr', data);
 	};
 
-	const internalConsole = new console.Console(stdout, stderr);
+	let internalConsole;
+	if (typeof console.Console === 'function') {
+	  internalConsole = new console.Console(stdout, stderr);
+ 	} else {
+		internalConsole = console;
+	}
+
 
 	for (const method of consoleMethods) {
 		originalMethods[method] = (console as any)[method];
